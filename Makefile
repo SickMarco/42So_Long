@@ -17,34 +17,33 @@ PRINTF = ./Lib/Printf/libftprintf.a
 all: lib printf gnl $(NAME)
 
 lib:
-	@make -s -C Lib/Libft
+	make -s -C Lib/Libft
 
 printf:
-	@make -s -C Lib/Printf
+	make -s -C Lib/Printf
 	
 gnl:
-	@make -s -C Lib/GetNextLine
+	make -s -C Lib/GetNextLine
 
 $(NAME): $(OBJ)
-	@echo " \033[32mCompiling $(NAME) 🚀"
+	@echo "\033[32mCompiling $(NAME) 🚀"
 	@gcc $(CFLAGS) $(OBJ) $(LIBFT) $(PRINTF) $(GNL) $(LINK) -o $(NAME)
-	@echo " Compiled ✅"
+	@echo "Compiled ✅"
 
-$(OBJ): $(SRC)
-	@gcc $(FLAGS) -c $(SRC)
-	
 clean:
-	@echo " \033[0;31mCleaning objects 🧹"
+	@echo "\033[0;31mCleaning objects 🧹"
 	@rm -rf $(OBJ)
 	@make clean -s -C Lib/Libft
 	@make clean -s -C Lib/Printf
 	@make clean -s -C Lib/GetNextLine
 
 fclean: clean
-	@echo " \033[0;31mRemoving $(NAME) 🗑"
+	@echo "\033[0;31mRemoving $(NAME) 🗑"
 	@rm -rf $(NAME)
 	@make fclean -s -C Lib/Libft
 	@make fclean -s -C Lib/Printf
 	@make fclean -s -C Lib/GetNextLine
 
 re: fclean all
+
+.SILENT: $(OBJ) lib printf gnl
