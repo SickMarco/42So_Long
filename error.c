@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 15:28:41 by mbozzi            #+#    #+#             */
-/*   Updated: 2022/12/17 17:53:02 by mbozzi           ###   ########.fr       */
+/*   Created: 2022/12/17 16:48:13 by mbozzi            #+#    #+#             */
+/*   Updated: 2022/12/17 17:48:17 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int main(int ac, char**av)
+void ft_arguments(int ac)
 {
-	if (ac == 2)
-	{
-		if (ft_check_map_format(av[1]) == 1)
-		{
-			ft_printf("\033[0;31mMap Error\n");
-			return (0);
-		}
-		mlx_start();
-	}
-	else
-		ft_arguments(ac);
+	if (ac < 2)
+		ft_printf ("\033[0;31mInsert map\n");
+	else if (ac > 2)
+		ft_printf ("\033[0;31mToo many arguments\n");
+}
+
+int ft_check_map_format(char *map)
+{
+	int i;
+	char ber[4] = {'b','e','r','\0'};
+
+	i = 0;
+	while (map[i - 1] != '.')
+		i++;
+	if (ft_strncmp(&map[i],&ber[0], 4) != 0)
+		return (1);
+	return (0);
 }

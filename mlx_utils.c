@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 15:28:41 by mbozzi            #+#    #+#             */
-/*   Updated: 2022/12/17 17:53:02 by mbozzi           ###   ########.fr       */
+/*   Created: 2022/12/17 17:51:29 by mbozzi            #+#    #+#             */
+/*   Updated: 2022/12/17 19:22:11 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int main(int ac, char**av)
+void mlx_start()
 {
-	if (ac == 2)
-	{
-		if (ft_check_map_format(av[1]) == 1)
-		{
-			ft_printf("\033[0;31mMap Error\n");
-			return (0);
-		}
-		mlx_start();
-	}
-	else
-		ft_arguments(ac);
+	t_program start;
+
+	start.mlx = mlx_init();
+	start.window.win = mlx_new_window(start.mlx, 500, 500, "so_long");
+	mlx_loop(start.mlx);
 }
