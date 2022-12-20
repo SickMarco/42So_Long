@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:28:41 by mbozzi            #+#    #+#             */
-/*   Updated: 2022/12/17 17:53:02 by mbozzi           ###   ########.fr       */
+/*   Updated: 2022/12/19 17:13:31 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,17 @@
 
 int main(int ac, char**av)
 {
+	//t_program program;
+	char *path;
+	
+	path = ft_strjoin ("./Maps/", av[1]);
 	if (ac == 2)
 	{
-		if (ft_check_map_format(av[1]) == 1)
-		{
-			ft_printf("\033[0;31mMap Error\n");
-			return (0);
-		}
-		mlx_start();
+		if (ft_check_map_format(path) == 1)
+			return (ft_printf("\033[0;31mWrong Map Format\n"));
+		else if (ft_check_map_error(path) == 1)
+			return (ft_printf("\033[0;31mMap Error\n"));
+		mlx_start(path);
 	}
 	else
 		ft_arguments(ac);

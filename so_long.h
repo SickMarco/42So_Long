@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 16:09:32 by mbozzi            #+#    #+#             */
-/*   Updated: 2022/12/17 18:01:36 by mbozzi           ###   ########.fr       */
+/*   Updated: 2022/12/20 16:35:21 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "./Lib/Libft/libft.h"
 #include "./Lib/Printf/ft_printf.h"
 #include "./Lib/GetNextLine/get_next_line.h"
+#include <fcntl.h>
 
 //STRUCTS
 
@@ -35,10 +36,26 @@ typedef struct	s_program {
 	t_window	window;
 }				t_program;
 
+typedef struct 	s_image {
+	void 		*image;
+	t_vector 	size;
+}				t_image;
+
+typedef struct s_matrix {
+	char 		**mat;
+	char		*line;
+	int			fd;
+	int			i;
+	int			x;
+	int 		y;
+}				t_matrix;
+
 //FUNCTIONS
 
 void ft_arguments(int ac);
 int ft_check_map_format(char *map);
-void mlx_start();
-
+void mlx_start(char *str);
+void ft_window (char *str, void *mlx);
+int ft_check_map_error(char *path);
+char **ft_matrix(char *path, int *lines);
 #endif
