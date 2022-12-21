@@ -1,6 +1,6 @@
 NAME = so_long
 
-SRC = main.c error.c mlx_utils.c matrix.c
+SRC = main.c map_error.c mlx_utils.c matrix.c
 
 OBJ = $(SRC:.c=.o)
 

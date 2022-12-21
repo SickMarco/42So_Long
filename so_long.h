@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 16:09:32 by mbozzi            #+#    #+#             */
-/*   Updated: 2022/12/20 16:35:21 by mbozzi           ###   ########.fr       */
+/*   Updated: 2022/12/21 15:39:02 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ typedef struct s_matrix {
 
 //FUNCTIONS
 
-void ft_arguments(int ac);
 int ft_check_map_format(char *map);
 void mlx_start(char *str);
 void ft_window (char *str, void *mlx);
 int ft_check_map_error(char *path);
 char **ft_matrix(char *path, int *lines);
+
 #endif
