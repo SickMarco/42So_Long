@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:48:13 by mbozzi            #+#    #+#             */
-/*   Updated: 2022/12/21 17:10:28 by mbozzi           ###   ########.fr       */
+/*   Updated: 2022/12/28 15:54:53 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,8 @@ int ft_check_map_error(char *path)
 
 	matrix.x = 0;
 	matrix.y = 0;
-	lines = 0;
-	matrix.mat = ft_matrix(path, &lines);
+	lines = ft_matrix_lines(path);
+	matrix.mat = ft_matrix(path);
 	if (ft_strlen(matrix.mat[matrix.x]) == lines)
 		return (1);
 	if (ft_wall_controll(matrix.mat, matrix.x , matrix.y, 0) == 1)

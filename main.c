@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:28:41 by mbozzi            #+#    #+#             */
-/*   Updated: 2022/12/21 16:27:15 by mbozzi           ###   ########.fr       */
+/*   Updated: 2022/12/28 16:04:16 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int main(int ac, char**av)
 		else if (ft_check_map_error(path) == 1)
 			return (ft_printf("\033[0;31mError\nMap Error\n"));
 		mlx_start(path);
+		free(path);
 	}
 	else
 		ft_arguments(ac);

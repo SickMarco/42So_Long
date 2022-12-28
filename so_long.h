@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 16:09:32 by mbozzi            #+#    #+#             */
-/*   Updated: 2022/12/21 15:39:02 by mbozzi           ###   ########.fr       */
+/*   Updated: 2022/12/28 17:14:15 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 #include "./Lib/GetNextLine/get_next_line.h"
 #include <fcntl.h>
 
-//STRUCTS
-
 typedef struct	s_vector {
 	int	x;
 	int	y;
@@ -31,31 +29,40 @@ typedef struct	s_window {
 	t_vector	size;
 }				t_window;
 
-typedef struct	s_program {
-	void		*mlx;
-	t_window	window;
-}				t_program;
-
 typedef struct 	s_image {
 	void 		*image;
 	t_vector 	size;
+	t_vector 	position;
 }				t_image;
 
 typedef struct s_matrix {
 	char 		**mat;
 	char		*line;
 	int			fd;
-	int			i;
 	int			x;
 	int 		y;
 }				t_matrix;
 
-//FUNCTIONS
+typedef struct	s_program {
+	void		*mlx;
+	t_window	window;
+	t_image		sprite;
+}				t_program;
 
-int ft_check_map_format(char *map);
-void mlx_start(char *str);
-void ft_window (char *str, void *mlx);
-int ft_check_map_error(char *path);
-char **ft_matrix(char *path, int *lines);
+typedef struct	s_pathmap {
+	char 		*wall;
+	char 		*player;
+	char 		*coll;
+	char 		*exit;
+}				t_pathmap;
+
+int 		ft_check_map_format(char *map);
+void 		mlx_start(char *str);
+void 		*ft_window (char *str, void *mlx);
+int 		ft_check_map_error(char *path);
+char 		**ft_matrix(char *path);
+void		ft_map(void *mlx, void *win, char *map);
+int 		ft_matrix_lines(char *path);
+void 		ft_putmap (void *mlx, void *win, int x, int y, char c);
 
 #endif
