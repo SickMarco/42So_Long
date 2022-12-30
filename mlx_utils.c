@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 17:51:29 by mbozzi            #+#    #+#             */
-/*   Updated: 2022/12/29 18:44:35 by mbozzi           ###   ########.fr       */
+/*   Updated: 2022/12/30 20:12:13 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,15 @@ int mlx_close()
 	exit(0);
 }
 
-void mlx_start(char *map, char **matrix)
+void mlx_start(char *map, t_matrix *matrix)
 {
-	t_program start;
-	t_window  win;
+	t_program game;
 
-	start.mlx = mlx_init();
-	win.win = ft_window(map, start.mlx);
-	ft_map(start.mlx, win.win, map, matrix);
-	mlx_key_hook(win.win, *ft_key, &start);
-	mlx_loop(start.mlx);
+	game.mlx = mlx_init();
+	game.window.win = ft_window(map, game.mlx);
+	ft_map(&game, map, matrix);
+	mlx_key_hook(game.window.win, *ft_key, &game);
+	mlx_loop(game.mlx);
 }
 
 void *ft_window(char *path, void *mlx)

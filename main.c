@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:28:41 by mbozzi            #+#    #+#             */
-/*   Updated: 2022/12/29 18:44:07 by mbozzi           ###   ########.fr       */
+/*   Updated: 2022/12/30 15:41:34 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int main(int ac, char**av)
 			return (ft_printf("\033[0;31mError\nWrong Map Format\n"));
 		else if (ft_check_map_error(path, matrix.mat) == 1)
 			return (ft_printf("\033[0;31mError\nMap Error\n"));
-		mlx_start(path, matrix.mat);
+		mlx_start(path, &matrix);
 		free(path);
 		free(matrix.mat);
 	}
