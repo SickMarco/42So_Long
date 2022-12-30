@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:39:13 by mbozzi            #+#    #+#             */
-/*   Updated: 2022/12/28 17:48:03 by mbozzi           ###   ########.fr       */
+/*   Updated: 2022/12/29 18:39:20 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	*ft_sprite(void *mlx, char *path)
 	return(img.image);
 }
 
-void	ft_map(void *mlx, void *win, char *map)
+void	ft_map(void *mlx, void *win, char *map, char **mat)
 {
 	t_matrix matrix;
 	int lines;
@@ -32,12 +32,11 @@ void	ft_map(void *mlx, void *win, char *map)
 	lines = ft_matrix_lines(map);
 	matrix.x = 0;
 	matrix.y = 0;
-	matrix.mat = ft_matrix(map);
 	while (lines > 0)
 	{
-		while (matrix.mat[matrix.x][matrix.y])
+		while (mat[matrix.x][matrix.y])
 		{
-			ft_putmap(mlx, win, matrix.x, matrix.y, matrix.mat[matrix.x][matrix.y]);
+			ft_putmap(mlx, win, matrix.x, matrix.y, mat[matrix.x][matrix.y]);
 			matrix.y++;
 		}
 		matrix.x++;
@@ -56,8 +55,8 @@ void	ft_putmap(void *mlx, void *win, int x, int y, char c)
 		img.sprite.image = ft_sprite(mlx, "./Textures/floor50.xpm");
 	else if (c == 'P')
 		img.sprite.image = ft_sprite(mlx, "./Textures/ghost1.xpm");
-	/*else if (c == 'C')
-		img.sprite.image = ft_sprite(mlx, "./Textures/");*/
+	else if (c == 'C')
+		img.sprite.image = ft_sprite(mlx, "./Textures/key.xpm");
 	else if (c == 'E')
 		img.sprite.image = ft_sprite(mlx, "./Textures/door.xpm");
 	else

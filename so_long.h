@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 16:09:32 by mbozzi            #+#    #+#             */
-/*   Updated: 2022/12/28 17:14:15 by mbozzi           ###   ########.fr       */
+/*   Updated: 2022/12/29 18:39:28 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,20 +49,14 @@ typedef struct	s_program {
 	t_image		sprite;
 }				t_program;
 
-typedef struct	s_pathmap {
-	char 		*wall;
-	char 		*player;
-	char 		*coll;
-	char 		*exit;
-}				t_pathmap;
-
 int 		ft_check_map_format(char *map);
-void 		mlx_start(char *str);
+void 		mlx_start(char *str, char **matrix);
 void 		*ft_window (char *str, void *mlx);
-int 		ft_check_map_error(char *path);
+int 		ft_check_map_error(char *path, char **matrix);
 char 		**ft_matrix(char *path);
-void		ft_map(void *mlx, void *win, char *map);
+void		ft_map(void *mlx, void *win, char *map, char **mat);
 int 		ft_matrix_lines(char *path);
 void 		ft_putmap (void *mlx, void *win, int x, int y, char c);
+int			ft_key (int key);
 
 #endif

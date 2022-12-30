@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/15 11:39:06 by mbozzi            #+#    #+#             */
-/*   Updated: 2022/12/19 15:41:03 by mbozzi           ###   ########.fr       */
+/*   Created: 2022/12/29 18:10:28 by mbozzi            #+#    #+#             */
+/*   Updated: 2022/12/29 18:45:02 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "so_long.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
-# endif
-
-# include <stdlib.h>
-# include <unistd.h>
-
-char	*get_next_line(int fd);
-int		ft_strlen2(const char *str);
-char	*ft_strjoin2(char *s1, char *s2);
-void	ft_bzero2(void *s, size_t n);
-void	*ft_calloc2(size_t nmemb, size_t size);
-int		ft_check_eol(char *buff);
-
-#endif
+int	ft_key (int key)
+{
+	
+	if (key == 40)
+	{
+		
+	}
+	return (0);
+}

@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:28:41 by mbozzi            #+#    #+#             */
-/*   Updated: 2022/12/28 16:04:16 by mbozzi           ###   ########.fr       */
+/*   Updated: 2022/12/29 18:44:07 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,20 @@ void ft_arguments(int ac)
 
 int main(int ac, char**av)
 {
-	//t_program program;
+	t_matrix matrix;
 	char *path;
 	
 	path = ft_strjoin ("./Maps/", av[1]);
 	if (ac == 2)
 	{
+		matrix.mat = ft_matrix(path);
 		if (ft_check_map_format(path) == 1)
 			return (ft_printf("\033[0;31mError\nWrong Map Format\n"));
-		else if (ft_check_map_error(path) == 1)
+		else if (ft_check_map_error(path, matrix.mat) == 1)
 			return (ft_printf("\033[0;31mError\nMap Error\n"));
-		mlx_start(path);
+		mlx_start(path, matrix.mat);
 		free(path);
+		free(matrix.mat);
 	}
 	else
 		ft_arguments(ac);

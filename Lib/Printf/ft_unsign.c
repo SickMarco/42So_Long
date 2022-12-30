@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 23:17:33 by mbozzi            #+#    #+#             */
-/*   Updated: 2022/11/08 14:18:55 by mbozzi           ###   ########.fr       */
+/*   Updated: 2022/12/18 09:50:46 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	ft_unsign(int num)
 	str = ft_itoa_unsigned(n);
 	while (str[i])
 		write(1, &str[i++], 1);
-	len = ft_strlen(str);
+	len = ft_strlen3(str);
 	free(str);
 	return (len);
 }

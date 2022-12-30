@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:48:13 by mbozzi            #+#    #+#             */
-/*   Updated: 2022/12/28 15:54:53 by mbozzi           ###   ########.fr       */
+/*   Updated: 2022/12/29 18:40:53 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int ft_check_collectible(char **matrix, int lines, int x, int y)
 	return(1);
 }
 
-int ft_check_map_error(char *path)
+int ft_check_map_error(char *path, char **mat)
 {
 	t_matrix 	matrix;
 	int			lines;
@@ -114,17 +114,15 @@ int ft_check_map_error(char *path)
 	matrix.x = 0;
 	matrix.y = 0;
 	lines = ft_matrix_lines(path);
-	matrix.mat = ft_matrix(path);
-	if (ft_strlen(matrix.mat[matrix.x]) == lines)
+	if (ft_strlen(mat[matrix.x]) == lines)
 		return (1);
-	if (ft_wall_controll(matrix.mat, matrix.x , matrix.y, 0) == 1)
+	if (ft_wall_controll(mat, matrix.x , matrix.y, 0) == 1)
 		return (1);
 	matrix.x++;
-	if (ft_lines_controll(matrix.mat, lines, matrix.x, matrix.y) == 1)
+	if (ft_lines_controll(mat, lines, matrix.x, matrix.y) == 1)
 		return (1);
-	if (ft_check_collectible(matrix.mat, lines, matrix.x, matrix.y) == 1)
+	if (ft_check_collectible(mat, lines, matrix.x, matrix.y) == 1)
 		return (1);
-	free(matrix.mat);
 	return (0);
 }
 

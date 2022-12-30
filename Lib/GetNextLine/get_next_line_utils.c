@@ -6,13 +6,13 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 11:39:01 by mbozzi            #+#    #+#             */
-/*   Updated: 2022/11/25 18:07:48 by mbozzi           ###   ########.fr       */
+/*   Updated: 2022/12/29 16:43:39 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strlen(const char *str)
+int	ft_strlen2(const char *str)
 {
 	int	i;
 
@@ -33,8 +33,8 @@ char	*ft_strjoin2(char *s1, char *s2)
 
 	i = 0;
 	x = 0;
-	len = ft_strlen(s1) + ft_strlen(s2);
-	str = malloc(sizeof(char) * (len + 1));
+	len = ft_strlen2(s1) + ft_strlen2(s2);
+	str = ft_calloc2(sizeof(char), len + 1);
 	if (!str || !s1 || !s2)
 		return (NULL);
 	while (s1[i])
@@ -49,7 +49,7 @@ char	*ft_strjoin2(char *s1, char *s2)
 	return (str);
 }
 
-void	ft_bzero(void *s, size_t n)
+void	ft_bzero2(void *s, size_t n)
 {
 	size_t	i;
 	char	*str;
@@ -63,14 +63,14 @@ void	ft_bzero(void *s, size_t n)
 	}
 }
 
-void	*ft_calloc(size_t nmemb, size_t size)
+void	*ft_calloc2(size_t nmemb, size_t size)
 {
 	void	*ptr;
 
 	ptr = malloc(nmemb * size);
 	if (!ptr)
 		return (NULL);
-	ft_bzero(ptr, nmemb * size);
+	ft_bzero2(ptr, nmemb * size);
 	return (ptr);
 }
 

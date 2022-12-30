@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 00:21:15 by mbozzi            #+#    #+#             */
-/*   Updated: 2022/11/25 18:07:53 by mbozzi           ###   ########.fr       */
+/*   Updated: 2022/12/19 15:41:20 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ char	*ft_exline(char *buff)
 		free(buff);
 		return (NULL);
 	}
-	len = ft_strlen(buff) - i + 1;
-	ex = ft_calloc(sizeof(char), len);
+	len = ft_strlen2(buff) - i + 1;
+	ex = ft_calloc2(sizeof(char), len);
 	if (!ex)
 		return (NULL);
 	while (buff[i])
@@ -57,7 +57,7 @@ char	*ft_newline(char *buff)
 	if (!buff[i])
 		return (NULL);
 	i = ft_ncount(buff);
-	tmp = ft_calloc(sizeof(char), i + 1);
+	tmp = ft_calloc2(sizeof(char), i + 1);
 	if (!tmp)
 		return (NULL);
 	i = 0;
@@ -76,7 +76,7 @@ char	*ft_read(int fd, int *flag)
 	char		*tmp;
 	int			check;
 
-	tmp = ft_calloc(sizeof(char), BUFFER_SIZE + 1);
+	tmp = ft_calloc2(sizeof(char), BUFFER_SIZE + 1);
 	if (!tmp)
 		return (NULL);
 	check = read(fd, tmp, BUFFER_SIZE);
@@ -99,7 +99,7 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0))
 		return (NULL);
 	if (!buff)
-		buff = ft_calloc(sizeof(char), 1);
+		buff = ft_calloc2(sizeof(char), 1);
 	flag = 1;
 	while (flag > 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 18:24:24 by mbozzi            #+#    #+#             */
-/*   Updated: 2022/11/08 15:22:51 by mbozzi           ###   ########.fr       */
+/*   Updated: 2022/12/18 09:50:15 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdint.h>
 
 int		ft_printf(const char *ktm, ...);
-int		ft_strlen(const char *str);
+int		ft_strlen3(const char *str);
 int		ft_putchar(int c);
 int		ft_putstrn(char *str);
 int		ft_putptrn(uintptr_t ptr);
