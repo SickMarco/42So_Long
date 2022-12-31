@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 15:35:00 by mbozzi            #+#    #+#             */
-/*   Updated: 2022/12/29 18:09:38 by mbozzi           ###   ########.fr       */
+/*   Updated: 2022/12/31 17:15:05 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,22 +52,17 @@ char **ft_matrix(char *path)
 	return (matrix.mat);
 }
 
-int ft_matrix_lines(char *path)
+int ft_matrix_lines(t_program *p)
 {
-	t_matrix 	matrix;
-	int 		i;
-
-	i = 0;
-	matrix.fd = open(path, O_RDONLY);
-	matrix.line = get_next_line(matrix.fd);
-	while (matrix.line != NULL)
+	p->matrix.x = 0;
+	p->matrix.y = 0;
+	while (p->matrix.mat[p->matrix.x])
 	{
-		free(matrix.line);
-		matrix.line = get_next_line(matrix.fd);
-		i++;
+		while (p->matrix.mat[p->matrix.x][p->matrix.y])
+			p->matrix.y++;
+		p->matrix.x++;
+		p->matrix.y = 0;
 	}
-	free(matrix.line);
-	close (matrix.fd);
-	return (i);
+	return (p->matrix.x);
 }
 

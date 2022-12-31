@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:48:13 by mbozzi            #+#    #+#             */
-/*   Updated: 2022/12/29 18:40:53 by mbozzi           ###   ########.fr       */
+/*   Updated: 2022/12/31 17:23:59 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,22 +106,21 @@ int ft_check_collectible(char **matrix, int lines, int x, int y)
 	return(1);
 }
 
-int ft_check_map_error(char *path, char **mat)
+int ft_check_map_error(t_program *p)
 {
-	t_matrix 	matrix;
-	int			lines;
+	int	lines;
 
-	matrix.x = 0;
-	matrix.y = 0;
-	lines = ft_matrix_lines(path);
-	if (ft_strlen(mat[matrix.x]) == lines)
+	lines = ft_matrix_lines(p);
+	p->matrix.x = 0;
+	p->matrix.y = 0;
+	if (ft_strlen(p->matrix.mat[p->matrix.x]) == lines)
 		return (1);
-	if (ft_wall_controll(mat, matrix.x , matrix.y, 0) == 1)
+	if (ft_wall_controll(p->matrix.mat, p->matrix.x , p->matrix.y, 0) == 1)
 		return (1);
-	matrix.x++;
-	if (ft_lines_controll(mat, lines, matrix.x, matrix.y) == 1)
+	p->matrix.x++;
+	if (ft_lines_controll(p->matrix.mat, lines, p->matrix.x, p->matrix.y) == 1)
 		return (1);
-	if (ft_check_collectible(mat, lines, matrix.x, matrix.y) == 1)
+	if (ft_check_collectible(p->matrix.mat, lines, p->matrix.x, p->matrix.y) == 1)
 		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 16:09:32 by mbozzi            #+#    #+#             */
-/*   Updated: 2022/12/30 20:08:01 by mbozzi           ###   ########.fr       */
+/*   Updated: 2022/12/31 17:29:47 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 #include "./Lib/Printf/ft_printf.h"
 #include "./Lib/GetNextLine/get_next_line.h"
 #include <fcntl.h>
+
+#ifndef SIZE
+#define SIZE 50
+#endif
 
 typedef struct	s_vector {
 	int	x;
@@ -32,7 +36,6 @@ typedef struct	s_window {
 typedef struct 	s_image {
 	void 		*image;
 	t_vector 	size;
-	t_vector 	position;
 }				t_image;
 
 typedef struct s_matrix {
@@ -61,15 +64,16 @@ typedef struct	s_program {
 	t_player	player;
 	t_image		img;
 	t_sprite	sprite;
+	t_matrix	matrix;
 }				t_program;
 
 int 		ft_check_map_format(char *map);
-void 		mlx_start(char *str, t_matrix *matrix);
-void 		*ft_window (char *str, void *mlx);
-int 		ft_check_map_error(char *path, char **matrix);
+int 		ft_check_map_error(t_program *p);
+void 		mlx_start(t_program *game);
+void 		ft_window(t_program *p);
 char 		**ft_matrix(char *path);
-void		ft_map(t_program *p, char *map, t_matrix *matrix);
-int 		ft_matrix_lines(char *path);
+void		ft_map(t_program *p);
+int 		ft_matrix_lines(t_program *p);
 int			ft_key (int key, void *param);
 void 		ft_destroyer(t_program *p);
 

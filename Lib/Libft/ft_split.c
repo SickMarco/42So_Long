@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/23 14:27:49 by mbozzi            #+#    #+#             */
-/*   Updated: 2022/12/30 20:18:01 by mbozzi           ###   ########.fr       */
+/*   Updated: 2022/12/30 22:35:49 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 char	*ft_words_alloc(const char *s, int start, int end)
 {
-	static char	*str;
-	int			i;
+	char	*str;
+	int		i;
 
 	i = 0;
-	str = ft_calloc(sizeof(char), 1);
+	str = malloc(sizeof(char) * (end - start + 1));
 	if (!str)
 		return (NULL);
 	while (end > start)
