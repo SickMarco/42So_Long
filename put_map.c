@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:39:13 by mbozzi            #+#    #+#             */
-/*   Updated: 2022/12/31 17:26:37 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/01 20:51:21 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	ft_sprite(t_program *p)
 	p->sprite.floor = mlx_xpm_file_to_image(p->mlx, "./Textures/floor50.xpm", &x, &y);
 	p->sprite.collect = mlx_xpm_file_to_image(p->mlx, "./Textures/key.xpm", &x, &y);
 	p->sprite.exit = mlx_xpm_file_to_image(p->mlx, "./Textures/door.xpm", &x, &y);
+	p->sprite.win = mlx_xpm_file_to_image(p->mlx, "./Textures/win.xpm", &x, &y);
 }
 
 void ft_put_map(t_program *p, char c)
@@ -40,14 +41,12 @@ void ft_put_map(t_program *p, char c)
 
 void	ft_map(t_program *p)
 {
-	int			lines;
-
-	lines = ft_matrix_lines(p);
 	p->matrix.x = 0;
 	p->matrix.y = 0;
-	while (lines > 0)
+	p->collect = 0;
+	ft_sprite(p);
+	while (p->matrix.lines > 0)
 	{
-		ft_sprite(p);
 		while (p->matrix.mat[p->matrix.x][p->matrix.y])
 		{
 			if (p->matrix.mat[p->matrix.x][p->matrix.y] == 'P')
@@ -55,11 +54,13 @@ void	ft_map(t_program *p)
 				p->player.position.x = p->matrix.x;
 				p->player.position.y = p->matrix.y;
 			}
+			else if (p->matrix.mat[p->matrix.x][p->matrix.y] == 'C')
+				p->collect++;
 			ft_put_map(p, p->matrix.mat[p->matrix.x][p->matrix.y]);
 			p->matrix.y++;
 		}
 		p->matrix.x++;
 		p->matrix.y = 0;
-		lines--;
+		p->matrix.lines--;
 	}
 }

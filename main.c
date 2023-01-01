@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:28:41 by mbozzi            #+#    #+#             */
-/*   Updated: 2022/12/31 17:55:24 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/01 20:51:56 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,14 @@ int main(int ac, char**av)
 	path = ft_strjoin("./Maps/", av[1]);
 	if (ac == 2)
 	{
-		game.matrix.mat = ft_matrix(path);
+		game.matrix.mat = ft_matrix(path, &game);
 		if (ft_check_map_format(path) == 1)
 			return (ft_printf("\033[0;31mError\nWrong Map Format\n"));
 		else if (ft_check_map_error(&game) == 1)
 			return (ft_printf("\033[0;31mError\nMap Error\n"));
 		free(path);
-		mlx_start(&game);
+		game_start(&game);
+		mlx_hook(game.window.win, 17, 0, mlx_close, &game);
 		mlx_key_hook(game.window.win, *ft_key, &game);
 		mlx_loop(game.mlx);
 	}

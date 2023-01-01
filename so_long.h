@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 16:09:32 by mbozzi            #+#    #+#             */
-/*   Updated: 2022/12/31 17:29:47 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/01 20:42:49 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,10 @@ typedef struct	s_window {
 	t_vector	size;
 }				t_window;
 
-typedef struct 	s_image {
-	void 		*image;
-	t_vector 	size;
-}				t_image;
-
 typedef struct s_matrix {
 	char 		**mat;
 	char		*line;
+	int			lines;
 	int			fd;
 	int			x;
 	int 		y;
@@ -56,25 +52,26 @@ typedef struct 	s_sprite {
 	void		*wall;
 	void		*collect;
 	void		*exit;
+	void		*win;
 }				t_sprite;
 
 typedef struct	s_program {
 	void		*mlx;
 	t_window	window;
 	t_player	player;
-	t_image		img;
 	t_sprite	sprite;
 	t_matrix	matrix;
+	int			collect;
 }				t_program;
 
 int 		ft_check_map_format(char *map);
 int 		ft_check_map_error(t_program *p);
-void 		mlx_start(t_program *game);
-void 		ft_window(t_program *p);
-char 		**ft_matrix(char *path);
+void 		game_start(t_program *game);
+char 		**ft_matrix(char *path, t_program *p);
 void		ft_map(t_program *p);
-int 		ft_matrix_lines(t_program *p);
 int			ft_key (int key, void *param);
 void 		ft_destroyer(t_program *p);
+int 		mlx_close(t_program *p);
+void 		ft_win(t_program *p);
 
 #endif

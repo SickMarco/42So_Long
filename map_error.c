@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:48:13 by mbozzi            #+#    #+#             */
-/*   Updated: 2022/12/31 17:23:59 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/01 20:51:45 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,43 +31,43 @@ int ft_check_map_format(char *map)
 	return (0);
 }
 
-int ft_wall_controll(char **matrix, int x, int y, int flag)
+int ft_wall_controll(t_program *p, int x, int y, int flag)
 {
 	if (flag == 1)
 	{
-		if (matrix[x][y + 1] == '1' && matrix[x][y - 1] == '1' 
-			&& matrix[x + 1][y] == '1' && matrix[x - 1][y] == '1')
+		if (p->matrix.mat[x][y + 1] == '1' && p->matrix.mat[x][y - 1] == '1' 
+			&& p->matrix.mat[x + 1][y] == '1' && p->matrix.mat[x - 1][y] == '1')
 			return (1);
 	}
-	else if (flag == 0)
+	if (flag == 0)
 	{
-		while (matrix[x][y])
+		while (p->matrix.mat[x][y])
 		{
-			if (matrix[x][y] != '1')
+			if (p->matrix.mat[x][y] != '1')
 				return (1);
-			if (matrix[x][y] != '\0')
-				y++;
+			if (p->matrix.mat[x][ft_strlen(p->matrix.mat[x])] == '\0')
+				break;
 		}
 	}
 	return (0);
 }
 
-int ft_lines_controll(char **mat, int lines, int x, int y)
+int ft_lines_controll(t_program *p, int x, int y)
 {
 	int len;
 
-	len = ft_strlen(mat[x]);
-	while (x < lines - 1)
+	len = ft_strlen(p->matrix.mat[x]);
+	while (x < p->matrix.lines - 1)
 	{
-		if (mat[x][0]  != '1' && mat[x][ft_strlen(mat[x])] != '1')
+		if (p->matrix.mat[x][0]  != '1' && p->matrix.mat[x][len] != '1')
 			return (1);
-		while (mat[x][y] != '\0')
+		while (p->matrix.mat[x][y] != '\0')
 		{
-			if (mat[x][y] != 'C' && mat[x][y] != 'E' && mat[x][y] != 'P' 
-				&& mat[x][y] != '0' && mat[x][y] != '1')
+			if (p->matrix.mat[x][y] != 'C' && p->matrix.mat[x][y] != 'E' && p->matrix.mat[x][y] != 'P' 
+				&& p->matrix.mat[x][y] != '0' && p->matrix.mat[x][y] != '1')
 				return (1);
-			else if (mat[x][y] == 'C' || mat[x][y] == 'E' || mat[x][y] == 'P')
-				if (ft_wall_controll(mat, x , y, 1) == 1)
+			else if (p->matrix.mat[x][y] == 'C' || p->matrix.mat[x][y] == 'E' || p->matrix.mat[x][y] == 'P')
+				if (ft_wall_controll(p, x , y, 1) == 1)
 					return (1);
 			y++;
 		}
@@ -76,25 +76,25 @@ int ft_lines_controll(char **mat, int lines, int x, int y)
 		x++;
 		y = 0;
 	}
-	if (ft_wall_controll(mat, x , y, 0) == 1)
+	if (ft_wall_controll(p, x , y, 0) == 1)
 		return (1);
 	return (0);
 }
-int ft_check_collectible(char **matrix, int lines, int x, int y)
+int ft_check_collectible(t_program *p, int x, int y)
 {
 	static int check_c = 0;
 	static int check_p = 0;
 	static int check_e = 0;
-	
-	while (x < lines - 1)
+
+	while (x < p->matrix.lines - 1)
 	{
-		while (matrix[x][y])
+		while (p->matrix.mat[x][y])
 		{
-			if (matrix[x][y] == 'C')
+			if (p->matrix.mat[x][y] == 'C')
 				check_c++;
-			else if (matrix[x][y] == 'P')
+			else if (p->matrix.mat[x][y] == 'P')
 				check_p++;
-			else if (matrix[x][y] == 'E')
+			else if (p->matrix.mat[x][y] == 'E')
 				check_e++;
 			y++;
 		}
@@ -108,19 +108,16 @@ int ft_check_collectible(char **matrix, int lines, int x, int y)
 
 int ft_check_map_error(t_program *p)
 {
-	int	lines;
-
-	lines = ft_matrix_lines(p);
 	p->matrix.x = 0;
 	p->matrix.y = 0;
-	if (ft_strlen(p->matrix.mat[p->matrix.x]) == lines)
+	if (ft_strlen(p->matrix.mat[p->matrix.x]) == p->matrix.lines)
 		return (1);
-	if (ft_wall_controll(p->matrix.mat, p->matrix.x , p->matrix.y, 0) == 1)
+	if (ft_wall_controll(p, p->matrix.x , p->matrix.y, 0) == 1)
 		return (1);
 	p->matrix.x++;
-	if (ft_lines_controll(p->matrix.mat, lines, p->matrix.x, p->matrix.y) == 1)
+	if (ft_lines_controll(p, p->matrix.x, p->matrix.y) == 1)
 		return (1);
-	if (ft_check_collectible(p->matrix.mat, lines, p->matrix.x, p->matrix.y) == 1)
+	if (ft_check_collectible(p, p->matrix.x, p->matrix.y) == 1)
 		return (1);
 	return (0);
 }
