@@ -6,15 +6,15 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 15:35:00 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/01 20:49:11 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/02 16:04:40 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char *get_one_line(char *path, t_program *p)
+char	*get_one_line(char *path, t_program *p)
 {
-	static char 		*buff;
+	static char	*buff;
 
 	p->matrix.fd = open(path, O_RDONLY);
 	p->matrix.line = get_next_line(p->matrix.fd);
@@ -28,12 +28,11 @@ char *get_one_line(char *path, t_program *p)
 	}
 	close(p->matrix.fd);
 	free(p->matrix.line);
-	return(buff);
+	return (buff);
 }
 
-char **ft_matrix(char *path, t_program *p)
+char	**ft_matrix(char *path, t_program *p)
 {
-
 	p->matrix.lines = 0;
 	p->matrix.fd = open(path, O_RDONLY);
 	p->matrix.line = get_next_line(p->matrix.fd);

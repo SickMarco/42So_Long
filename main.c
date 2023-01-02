@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-void ft_arguments(int ac)
+void	ft_arguments(int ac)
 {
 	if (ac < 2)
 		ft_printf("\033[0;31mError\nInsert map\n");
@@ -20,11 +20,11 @@ void ft_arguments(int ac)
 		ft_printf("\033[0;31mError\nToo many arguments\n");
 }
 
-int main(int ac, char**av)
+int	main(int ac, char**av)
 {
-	t_program game;
-	char *path;
-	
+	t_program	game;
+	char		*path;
+
 	path = ft_strjoin("./Maps/", av[1]);
 	if (ac == 2)
 	{

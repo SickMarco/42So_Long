@@ -4,7 +4,7 @@ SRC = main.c map_error.c mlx_utils.c matrix.c put_map.c movement.c
 
 OBJ = $(SRC:.c=.o)
 
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = -Wall -Wextra -Werror -fPIE
 
 LINK = ../minilibx-linux/libmlx_Linux.a -lX11 -lXext -lm
 
