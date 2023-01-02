@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 17:51:29 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/02 16:49:36 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/02 19:29:47 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,12 @@ void	ft_destroyer(t_program *p)
 	mlx_destroy_image(p->mlx, p->player.img);
 	mlx_destroy_image(p->mlx, p->sprite.win);
 	mlx_destroy_image(p->mlx, p->exit.open);
+	ft_destroy_num(p);
 }
 
 int	mlx_close(t_program *p)
 {
+	mlx_loop_end(p->mlx);
 	mlx_clear_window(p->mlx, p->window.win);
 	mlx_destroy_window(p->mlx, p->window.win);
 	ft_destroyer(p);

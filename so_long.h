@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 16:09:32 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/02 17:19:19 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/02 19:40:05 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,19 @@ typedef struct s_sprite {
 	void		*win;
 }				t_sprite;
 
+typedef struct 	s_num {
+	void		*zero;
+	void		*one;
+	void		*two;
+	void		*three;
+	void		*four;
+	void		*five;
+	void		*six;
+	void		*seven;
+	void		*eight;
+	void		*nine;
+}				t_num;
+
 typedef struct s_program {
 	void		*mlx;
 	t_window	window;
@@ -68,6 +81,7 @@ typedef struct s_program {
 	t_sprite	sprite;
 	t_matrix	matrix;
 	int			collect;
+	t_num		num;
 }				t_program;
 
 int		ft_check_map_format(char *map);
@@ -79,5 +93,8 @@ int		ft_key(int key, void *param);
 void	ft_destroyer(t_program *p);
 int		mlx_close(t_program *p);
 void	ft_win(t_program *p);
+void	ft_number_sprite (t_program *p);
+void	ft_count_move(t_program *p);
+void	ft_destroy_num(t_program *p);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:39:13 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/02 17:20:41 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/02 19:31:10 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	ft_sprite(t_program *p)
 			&x, &y);
 	p->exit.open = mlx_xpm_file_to_image(p->mlx, "./Textures/open_d.xpm",
 			&x, &y);
+	ft_number_sprite(p);
 }
 
 void	ft_put_map(t_program *p, char c)
@@ -50,6 +51,8 @@ void	ft_put_map(t_program *p, char c)
 	else if (c == 'E')
 		mlx_put_image_to_window(p->mlx, p->window.win, p->sprite.exit,
 			p->matrix.y * SIZE, p->matrix.x * SIZE);
+	mlx_put_image_to_window(p->mlx, p->window.win, p->num.zero,
+		(ft_strlen(p->matrix.mat[0]) + 1) * 45, 20);
 }
 
 void	ft_position(t_program *p)

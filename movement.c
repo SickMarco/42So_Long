@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 18:10:28 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/02 17:24:12 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/02 19:33:00 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,8 @@ int	ft_key(int key, void *param)
 		mlx_put_image_to_window(p->mlx, p->window.win, p->exit.open,
 			p->exit.pos.y * SIZE, p->exit.pos.x * SIZE);
 	}
+	if (key == 100 || key == 97 || key == 119 || key == 115)
+		ft_count_move (p);
 	ft_printf ("Key pressed: %d\n", key);
 	return (0);
 }
