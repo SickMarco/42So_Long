@@ -6,11 +6,19 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 17:40:41 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/02 19:15:34 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/03 16:06:03 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	fck_line(t_program *p, void *spr, int x)
+{
+	int	i;
+
+	i = p->num.pos_x;
+	mlx_put_image_to_window(p->mlx, p->win.win, spr, i * SIZE - x, 20);
+}
 
 void	ft_destroy_num(t_program *p)
 {
@@ -57,58 +65,44 @@ void	ft_number_sprite(t_program *p)
 
 void	ft_put_num(t_program *p, int count, float x)
 {
-	int	len;
-
-	len = ft_strlen (p->matrix.mat[0]) + 1;
 	if (count == 0)
-		mlx_put_image_to_window(p->mlx, p->window.win, p->num.zero,
-			len * x, 20);
+		fck_line(p, p->num.zero, x);
 	else if (count == 1)
-		mlx_put_image_to_window(p->mlx, p->window.win, p->num.one, len * x, 20);
+		fck_line(p, p->num.one, x);
 	else if (count == 2)
-		mlx_put_image_to_window(p->mlx, p->window.win, p->num.two, len * x, 20);
+		fck_line(p, p->num.two, x);
 	else if (count == 3)
-		mlx_put_image_to_window(p->mlx, p->window.win, p->num.three,
-			len * x, 20);
+		fck_line(p, p->num.three, x);
 	else if (count == 4)
-		mlx_put_image_to_window(p->mlx, p->window.win, p->num.four,
-			len * x, 20);
+		fck_line(p, p->num.four, x);
 	else if (count == 5)
-		mlx_put_image_to_window(p->mlx, p->window.win, p->num.five,
-			len * x, 20);
+		fck_line(p, p->num.five, x);
 	else if (count == 6)
-		mlx_put_image_to_window(p->mlx, p->window.win, p->num.six, len * x, 20);
+		fck_line(p, p->num.six, x);
 	else if (count == 7)
-		mlx_put_image_to_window(p->mlx, p->window.win, p->num.seven,
-			len * x, 20);
+		fck_line(p, p->num.seven, x);
 	else if (count == 8)
-		mlx_put_image_to_window(p->mlx, p->window.win, p->num.eight, len * x, 20);
+		fck_line(p, p->num.eight, x);
 	else if (count == 9)
-		mlx_put_image_to_window(p->mlx, p->window.win, p->num.nine, len * x, 20);
+		fck_line(p, p->num.nine, x);
 }
 
 void	ft_count_move(t_program *p)
 {
-	static int count = 0;
+	static int	count = 0;
 
 	count++;
-	float	x;
 	if (count <= 9)
-	{
-		x = 45;
-		ft_put_num(p, count, x);
-	}
+		ft_put_num(p, count, 25.5);
 	else if (count <= 99)
 	{
-		x = 44.5;
-		ft_put_num(p, count % 10, 45);
-		ft_put_num(p, count / 10, x);
+		ft_put_num(p, count % 10, 25.5);
+		ft_put_num(p, count / 10, 33);
 	}
 	else if (count <= 999)
 	{
-		x = 44;
-		ft_put_num(p, count % 10, 45);
-		ft_put_num(p, count / 10 % 10, 44.5);
-		ft_put_num(p, count / 100, x);
+		ft_put_num(p, count % 10, 25.5);
+		ft_put_num(p, count / 10 % 10, 34);
+		ft_put_num(p, count / 100, 41);
 	}
 }

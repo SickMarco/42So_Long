@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 18:10:28 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/02 19:33:00 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/03 15:54:12 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ void	ft_r_mov(t_program *p, int *count, int win)
 			win == 0)
 			return ;
 		p->matrix.mat[p->player.pos.x][p->player.pos.y] = '0';
-		mlx_put_image_to_window(p->mlx, p->window.win, p->sprite.floor,
+		mlx_put_image_to_window(p->mlx, p->win.win, p->sprite.floor,
 			p->player.pos.y * SIZE, p->player.pos.x * SIZE);
 		p->player.pos.y++;
 		if (p->matrix.mat[p->player.pos.x][p->player.pos.y] == 'C')
 			*count += 1;
 		p->matrix.mat[p->player.pos.x][p->player.pos.y] = 'P';
-		mlx_put_image_to_window(p->mlx, p->window.win, p->player.img,
+		mlx_put_image_to_window(p->mlx, p->win.win, p->player.img,
 			p->player.pos.y * SIZE, p->player.pos.x * SIZE);
 	}
 }
@@ -51,13 +51,13 @@ void	ft_l_mov(t_program *p, int *count, int win)
 			win == 0)
 			return ;
 		p->matrix.mat[p->player.pos.x][p->player.pos.y] = '0';
-		mlx_put_image_to_window(p->mlx, p->window.win, p->sprite.floor,
+		mlx_put_image_to_window(p->mlx, p->win.win, p->sprite.floor,
 			p->player.pos.y * SIZE, p->player.pos.x * SIZE);
 		p->player.pos.y--;
 		if (p->matrix.mat[p->player.pos.x][p->player.pos.y] == 'C')
 			*count += 1;
 		p->matrix.mat[p->player.pos.x][p->player.pos.y] = 'P';
-		mlx_put_image_to_window(p->mlx, p->window.win, p->player.img,
+		mlx_put_image_to_window(p->mlx, p->win.win, p->player.img,
 			p->player.pos.y * SIZE, p->player.pos.x * SIZE);
 	}
 }
@@ -76,13 +76,13 @@ void	ft_up_mov(t_program *p, int *count, int win)
 			win == 0)
 			return ;
 		p->matrix.mat[p->player.pos.x][p->player.pos.y] = '0';
-		mlx_put_image_to_window(p->mlx, p->window.win, p->sprite.floor,
+		mlx_put_image_to_window(p->mlx, p->win.win, p->sprite.floor,
 			p->player.pos.y * SIZE, p->player.pos.x * SIZE);
 		p->player.pos.x--;
 		if (p->matrix.mat[p->player.pos.x][p->player.pos.y] == 'C')
 			*count += 1;
 		p->matrix.mat[p->player.pos.x][p->player.pos.y] = 'P';
-		mlx_put_image_to_window(p->mlx, p->window.win, p->player.img,
+		mlx_put_image_to_window(p->mlx, p->win.win, p->player.img,
 			p->player.pos.y * SIZE, p->player.pos.x * SIZE);
 	}
 }
@@ -101,13 +101,13 @@ void	ft_down_mov(t_program *p, int *count, int win)
 			win == 0)
 			return ;
 		p->matrix.mat[p->player.pos.x][p->player.pos.y] = '0';
-		mlx_put_image_to_window(p->mlx, p->window.win, p->sprite.floor,
+		mlx_put_image_to_window(p->mlx, p->win.win, p->sprite.floor,
 			p->player.pos.y * SIZE, p->player.pos.x * SIZE);
 		p->player.pos.x++;
 		if (p->matrix.mat[p->player.pos.x][p->player.pos.y] == 'C')
 			*count += 1;
 		p->matrix.mat[p->player.pos.x][p->player.pos.y] = 'P';
-		mlx_put_image_to_window(p->mlx, p->window.win, p->player.img,
+		mlx_put_image_to_window(p->mlx, p->win.win, p->player.img,
 			p->player.pos.y * SIZE, p->player.pos.x * SIZE);
 	}
 }
@@ -132,7 +132,7 @@ int	ft_key(int key, void *param)
 	if (count == p->collect)
 	{
 		win = 1;
-		mlx_put_image_to_window(p->mlx, p->window.win, p->exit.open,
+		mlx_put_image_to_window(p->mlx, p->win.win, p->exit.open,
 			p->exit.pos.y * SIZE, p->exit.pos.x * SIZE);
 	}
 	if (key == 100 || key == 97 || key == 119 || key == 115)

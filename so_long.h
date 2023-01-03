@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 16:09:32 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/02 19:40:05 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/03 17:59:14 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ typedef struct s_sprite {
 	void		*win;
 }				t_sprite;
 
-typedef struct 	s_num {
+typedef struct s_num {
 	void		*zero;
 	void		*one;
 	void		*two;
@@ -71,11 +71,12 @@ typedef struct 	s_num {
 	void		*seven;
 	void		*eight;
 	void		*nine;
+	int			pos_x;
 }				t_num;
 
 typedef struct s_program {
 	void		*mlx;
-	t_window	window;
+	t_window	win;
 	t_player	player;
 	t_exit		exit;
 	t_sprite	sprite;
@@ -93,7 +94,7 @@ int		ft_key(int key, void *param);
 void	ft_destroyer(t_program *p);
 int		mlx_close(t_program *p);
 void	ft_win(t_program *p);
-void	ft_number_sprite (t_program *p);
+void	ft_number_sprite(t_program *p);
 void	ft_count_move(t_program *p);
 void	ft_destroy_num(t_program *p);
 

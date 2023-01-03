@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:39:13 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/02 19:31:10 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/03 17:59:02 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,22 @@ void	ft_sprite(t_program *p)
 void	ft_put_map(t_program *p, char c)
 {
 	if (c == '1')
-		mlx_put_image_to_window(p->mlx, p->window.win, p->sprite.wall,
+		mlx_put_image_to_window(p->mlx, p->win.win, p->sprite.wall,
 			p->matrix.y * SIZE, p->matrix.x * SIZE);
 	else if (c == '0')
-		mlx_put_image_to_window(p->mlx, p->window.win, p->sprite.floor,
+		mlx_put_image_to_window(p->mlx, p->win.win, p->sprite.floor,
 			p->matrix.y * SIZE, p->matrix.x * SIZE);
 	else if (c == 'P')
-		mlx_put_image_to_window(p->mlx, p->window.win, p->player.img,
+		mlx_put_image_to_window(p->mlx, p->win.win, p->player.img,
 			p->matrix.y * SIZE, p->matrix.x * SIZE);
 	else if (c == 'C')
-		mlx_put_image_to_window(p->mlx, p->window.win, p->sprite.collect,
+		mlx_put_image_to_window(p->mlx, p->win.win, p->sprite.collect,
 			p->matrix.y * SIZE, p->matrix.x * SIZE);
 	else if (c == 'E')
-		mlx_put_image_to_window(p->mlx, p->window.win, p->sprite.exit,
+		mlx_put_image_to_window(p->mlx, p->win.win, p->sprite.exit,
 			p->matrix.y * SIZE, p->matrix.x * SIZE);
-	mlx_put_image_to_window(p->mlx, p->window.win, p->num.zero,
-		(ft_strlen(p->matrix.mat[0]) + 1) * 45, 20);
+	mlx_put_image_to_window(p->mlx, p->win.win, p->num.zero, p->num.pos_x
+		* SIZE - 25.5, 20);
 }
 
 void	ft_position(t_program *p)

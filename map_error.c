@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:48:13 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/02 17:15:23 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/03 15:21:21 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ int	ft_wall_controll(t_program *p, int x, int y, int flag)
 		{
 			if (p->matrix.mat[x][y] != '1')
 				return (1);
-			if (p->matrix.mat[x][ft_strlen(p->matrix.mat[x])] == '\0')
-				break ;
+			y++;
 		}
+		p->num.pos_x = y;
 	}
 	return (0);
 }
