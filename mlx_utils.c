@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 17:51:29 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/03 15:51:02 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/04 18:10:33 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	ft_destroyer(t_program *p)
 	mlx_destroy_image(p->mlx, p->sprite.exit);
 	mlx_destroy_image(p->mlx, p->sprite.floor);
 	mlx_destroy_image(p->mlx, p->player.img);
-	mlx_destroy_image(p->mlx, p->sprite.win);
 	mlx_destroy_image(p->mlx, p->exit.open);
+	mlx_destroy_image(p->mlx, p->enemy.img);
 	ft_destroy_num(p);
 }
 

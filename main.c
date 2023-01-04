@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:28:41 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/03 17:59:29 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/04 18:04:08 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ int	main(int ac, char**av)
 		game_start(&game);
 		mlx_hook(game.win.win, 17, 0, mlx_close, &game);
 		mlx_key_hook(game.win.win, *ft_key, &game);
+		if (game.enemy.count > 0)
+		{
+			srand(time(NULL));
+			mlx_loop_hook(game.mlx, *enemy_move, &game);
+		}
 		mlx_loop(game.mlx);
 	}
 	else

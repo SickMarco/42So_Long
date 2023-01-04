@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 16:09:32 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/03 17:59:14 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/04 18:11:56 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "./Lib/Printf/ft_printf.h"
 # include "./Lib/GetNextLine/get_next_line.h"
 # include <fcntl.h>
+# include <time.h>
 
 # ifndef SIZE
 #  define SIZE 50
@@ -57,7 +58,6 @@ typedef struct s_sprite {
 	void		*wall;
 	void		*collect;
 	void		*exit;
-	void		*win;
 }				t_sprite;
 
 typedef struct s_num {
@@ -74,6 +74,12 @@ typedef struct s_num {
 	int			pos_x;
 }				t_num;
 
+typedef struct s_enemy {
+	void		*img;
+	t_vector	pos;
+	int			count;
+}				t_enemy;
+
 typedef struct s_program {
 	void		*mlx;
 	t_window	win;
@@ -83,6 +89,7 @@ typedef struct s_program {
 	t_matrix	matrix;
 	int			collect;
 	t_num		num;
+	t_enemy		enemy;
 }				t_program;
 
 int		ft_check_map_format(char *map);
@@ -97,5 +104,10 @@ void	ft_win(t_program *p);
 void	ft_number_sprite(t_program *p);
 void	ft_count_move(t_program *p);
 void	ft_destroy_num(t_program *p);
+int		enemy_move(void *param);
+void	enemy_right(t_program *p);
+void	enemy_left(t_program *p);
+void	enemy_up(t_program *p);
+void	enemy_down(t_program *p);
 
 #endif

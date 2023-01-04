@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:48:13 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/03 15:21:21 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/03 18:14:04 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	ft_lines_controll(t_program *p, int x, int y, int len)
 		{
 			if (p->matrix.mat[x][y] != 'C' && p->matrix.mat[x][y] != 'E' &&
 				p->matrix.mat[x][y] != 'P' && p->matrix.mat[x][y] != '0' &&
-				p->matrix.mat[x][y] != '1')
+				p->matrix.mat[x][y] != '1' && p->matrix.mat[x][y] != 'K')
 				return (1);
 			else if (p->matrix.mat[x][y] == 'C' || p->matrix.mat[x][y] == 'E' ||
 				p->matrix.mat[x][y] == 'P')
