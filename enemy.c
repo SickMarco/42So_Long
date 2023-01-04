@@ -6,11 +6,16 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 18:05:08 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/04 18:12:07 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/04 23:41:31 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	enemy_right(t_program *p);
+void	enemy_left(t_program *p);
+void	enemy_up(t_program *p);
+void	enemy_down(t_program *p);
 
 void	enemy_up(t_program *p)
 {

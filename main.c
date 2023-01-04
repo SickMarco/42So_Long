@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:28:41 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/04 18:04:08 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/05 00:41:15 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,52 @@ void	ft_arguments(int ac)
 		ft_printf("\033[0;31mError\nToo many arguments\n");
 }
 
+int	ft_check_map(t_program *game, char *path)
+{
+	if (ft_check_map_format(path) == 1 || ft_check_map_error(game) == 1)
+	{
+		ft_printf("\033[0;31mError\nMap Error\n");
+		while (game->matrix.lines >= 0)
+		{
+			free(game->matrix.mat[game->matrix.lines]);
+			game->matrix.lines--;
+		}
+		free(path);
+		free(game->matrix.mat);
+		return (1);
+	}
+	return (0);
+}
+
+int	mlx_close(t_program *p)
+{
+	mlx_loop_end(p->mlx);
+	mlx_clear_window(p->mlx, p->win.win);
+	mlx_destroy_window(p->mlx, p->win.win);
+	ft_destroyer(p);
+	while (p->matrix.mat[p->matrix.lines])
+	{
+		free(p->matrix.mat[p->matrix.lines]);
+		p->matrix.lines++;
+	}
+	free(p->matrix.mat);
+	free(p->mlx);
+	exit(0);
+}
+
+void	game_loop(t_program *game)
+{
+	mlx_hook(game->win.win, 17, 0, mlx_close, game);
+	mlx_key_hook(game->win.win, *ft_key, game);
+	mlx_loop_hook(game->mlx, *ft_win, game);
+	if (game->enemy.count > 0)
+	{
+		srand(time(NULL));
+		mlx_loop_hook(game->mlx, *enemy_move, game);
+	}
+	mlx_loop(game->mlx);
+}
+
 int	main(int ac, char**av)
 {
 	t_program	game;
@@ -29,21 +75,12 @@ int	main(int ac, char**av)
 	if (ac == 2)
 	{
 		game.matrix.mat = ft_matrix(path, &game);
-		if (ft_check_map_format(path) == 1)
-			return (ft_printf("\033[0;31mError\nWrong Map Format\n"));
-		else if (ft_check_map_error(&game) == 1)
-			return (ft_printf("\033[0;31mError\nMap Error\n"));
-		free(path);
+		if (ft_check_map(&game, path) == 1)
+			return (0);
 		game_start(&game);
-		mlx_hook(game.win.win, 17, 0, mlx_close, &game);
-		mlx_key_hook(game.win.win, *ft_key, &game);
-		if (game.enemy.count > 0)
-		{
-			srand(time(NULL));
-			mlx_loop_hook(game.mlx, *enemy_move, &game);
-		}
-		mlx_loop(game.mlx);
+		game_loop(&game);
 	}
 	else
 		ft_arguments(ac);
+	return (0);
 }

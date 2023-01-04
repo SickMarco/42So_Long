@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:48:13 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/03 18:14:04 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/05 00:38:37 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ int	ft_check_map_format(char *map)
 		return (1);
 	fd = open (map, O_RDONLY);
 	if (fd == -1)
+	{
+		close(fd);
 		return (1);
+	}
 	close (fd);
 	return (0);
 }

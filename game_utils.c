@@ -1,16 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   matrix.c                                           :+:      :+:    :+:   */
+/*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/20 15:35:00 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/02 16:04:40 by mbozzi           ###   ########.fr       */
+/*   Created: 2022/12/17 17:51:29 by mbozzi            #+#    #+#             */
+/*   Updated: 2023/01/05 00:20:36 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	game_start(t_program *p)
+{
+	p->mlx = mlx_init();
+	p->win.size.x = ft_strlen(p->matrix.mat[p->matrix.x]);
+	p->win.size.y = p->matrix.lines;
+	p->win.win = mlx_new_window(p->mlx, p->win.size.x * SIZE,
+			p->win.size.y * SIZE, "so_long");
+	p->exit.win = 0;
+	ft_map(p);
+}
 
 char	*get_one_line(char *path, t_program *p)
 {
@@ -43,7 +54,30 @@ char	**ft_matrix(char *path, t_program *p)
 		p->matrix.lines++;
 	}
 	free(p->matrix.line);
-	close (p->matrix.fd);
+	close(p->matrix.fd);
 	p->matrix.mat = ft_split(get_one_line(path, p), '\n');
 	return (p->matrix.mat);
+}
+
+int	ft_win(t_program *p)
+{
+	if (p->player.pos.x == p->exit.pos.x && p->player.pos.y == p->exit.pos.y
+		&& p->exit.win == 1)
+	{
+		ft_printf("YOU WIN!\n");
+		mlx_close(p);
+	}
+	return (0);
+}
+
+void	ft_destroyer(t_program *p)
+{
+	mlx_destroy_image(p->mlx, p->sprite.collect);
+	mlx_destroy_image(p->mlx, p->sprite.wall);
+	mlx_destroy_image(p->mlx, p->sprite.exit);
+	mlx_destroy_image(p->mlx, p->sprite.floor);
+	mlx_destroy_image(p->mlx, p->player.img);
+	mlx_destroy_image(p->mlx, p->exit.open);
+	mlx_destroy_image(p->mlx, p->enemy.img);
+	ft_destroy_num(p);
 }

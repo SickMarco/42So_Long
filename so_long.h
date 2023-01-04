@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 16:09:32 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/04 18:11:56 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/05 00:41:38 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_player {
 typedef struct s_exit {
 	t_vector	pos;
 	void		*open;
+	int			win;
 }				t_exit;
 
 typedef struct s_sprite {
@@ -100,14 +101,10 @@ void	ft_map(t_program *p);
 int		ft_key(int key, void *param);
 void	ft_destroyer(t_program *p);
 int		mlx_close(t_program *p);
-void	ft_win(t_program *p);
+int		ft_win(t_program *p);
 void	ft_number_sprite(t_program *p);
 void	ft_count_move(t_program *p);
 void	ft_destroy_num(t_program *p);
 int		enemy_move(void *param);
-void	enemy_right(t_program *p);
-void	enemy_left(t_program *p);
-void	enemy_up(t_program *p);
-void	enemy_down(t_program *p);
 
 #endif

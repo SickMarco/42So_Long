@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:39:13 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/04 17:06:59 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/04 23:42:58 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,30 +76,26 @@ void	ft_position(t_program *p)
 		p->enemy.pos.x = p->matrix.x;
 		p->enemy.pos.y = p->matrix.y;
 	}
+	else if (p->matrix.mat[p->matrix.x][p->matrix.y] == 'C')
+		p->collect++;
 }
 
 void	ft_map(t_program *p)
 {
 	p->matrix.x = 0;
-	p->matrix.y = 0;
 	p->collect = 0;
 	p->enemy.count = 0;
 	ft_sprite(p);
 	while (p->matrix.lines > 0)
 	{
+		p->matrix.y = 0;
 		while (p->matrix.mat[p->matrix.x][p->matrix.y])
 		{
-			if (p->matrix.mat[p->matrix.x][p->matrix.y] == 'P' ||
-				p->matrix.mat[p->matrix.x][p->matrix.y] == 'E' ||
-				p->matrix.mat[p->matrix.x][p->matrix.y] == 'K' )
-				ft_position(p);
-			else if (p->matrix.mat[p->matrix.x][p->matrix.y] == 'C')
-				p->collect++;
+			ft_position(p);
 			ft_put_map(p, p->matrix.mat[p->matrix.x][p->matrix.y]);
 			p->matrix.y++;
 		}
 		p->matrix.x++;
-		p->matrix.y = 0;
 		p->matrix.lines--;
 	}
 }
