@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:28:41 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/05 00:41:15 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/05 12:36:37 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	ft_check_map(t_program *game, char *path)
 		free(game->matrix.mat);
 		return (1);
 	}
+	free(path);
 	return (0);
 }
 
@@ -49,6 +50,7 @@ int	mlx_close(t_program *p)
 		p->matrix.lines++;
 	}
 	free(p->matrix.mat);
+	mlx_destroy_display(p->mlx);
 	free(p->mlx);
 	exit(0);
 }
@@ -74,7 +76,7 @@ int	main(int ac, char**av)
 	path = ft_strjoin("./Maps/", av[1]);
 	if (ac == 2)
 	{
-		game.matrix.mat = ft_matrix(path, &game);
+		ft_matrix(path, &game);
 		if (ft_check_map(&game, path) == 1)
 			return (0);
 		game_start(&game);

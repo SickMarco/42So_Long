@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:48:13 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/05 00:38:37 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/05 12:29:29 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	ft_lines_controll(t_program *p, int x, int y, int len)
 {
 	while (x < p->matrix.lines - 1)
 	{
-		if (p->matrix.mat[x][0] != '1' && p->matrix.mat[x][len] != '1')
+		if (p->matrix.mat[x][0] != '1' || p->matrix.mat[x][len - 1] != '1')
 			return (1);
 		while (p->matrix.mat[x][y] != '\0')
 		{

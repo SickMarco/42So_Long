@@ -6,13 +6,13 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 19:25:43 by mbozzi            #+#    #+#             */
-/*   Updated: 2022/11/08 12:26:47 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/05 11:20:49 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_number_size(long int num)
+int	ft_number_size2(long int num)
 {
 	int	len;
 
@@ -37,7 +37,7 @@ char	*ft_itoa2(long int n)
 	long int		num;
 	unsigned int	len;
 
-	len = ft_number_size(n);
+	len = ft_number_size2(n);
 	num = n;
 	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (str == NULL)

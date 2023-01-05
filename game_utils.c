@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_utils.c                                        :+:      :+:    :+:   */
+/*   game_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 17:51:29 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/05 00:20:36 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/05 12:07:18 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	game_start(t_program *p)
 	ft_map(p);
 }
 
-char	*get_one_line(char *path, t_program *p)
+void	get_matrix(char *path, t_program *p)
 {
 	static char	*buff;
 
@@ -39,10 +39,11 @@ char	*get_one_line(char *path, t_program *p)
 	}
 	close(p->matrix.fd);
 	free(p->matrix.line);
-	return (buff);
+	p->matrix.mat = ft_split(buff, '\n');
+	free(buff);
 }
 
-char	**ft_matrix(char *path, t_program *p)
+void	ft_matrix(char *path, t_program *p)
 {
 	p->matrix.lines = 0;
 	p->matrix.fd = open(path, O_RDONLY);
@@ -55,8 +56,7 @@ char	**ft_matrix(char *path, t_program *p)
 	}
 	free(p->matrix.line);
 	close(p->matrix.fd);
-	p->matrix.mat = ft_split(get_one_line(path, p), '\n');
-	return (p->matrix.mat);
+	get_matrix(path, p);
 }
 
 int	ft_win(t_program *p)

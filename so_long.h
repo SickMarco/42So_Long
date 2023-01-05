@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 16:09:32 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/05 00:41:38 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/05 12:36:49 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ typedef struct s_program {
 int		ft_check_map_format(char *map);
 int		ft_check_map_error(t_program *p);
 void	game_start(t_program *game);
-char	**ft_matrix(char *path, t_program *p);
+void	ft_matrix(char *path, t_program *p);
 void	ft_map(t_program *p);
 int		ft_key(int key, void *param);
 void	ft_destroyer(t_program *p);
