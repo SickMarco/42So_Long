@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 16:09:32 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/05 12:36:49 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/05 16:19:12 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,9 @@ typedef struct s_enemy {
 	int			count;
 }				t_enemy;
 
+typedef struct s_ghost{
+}				t_ghost;
+
 typedef struct s_program {
 	void		*mlx;
 	t_window	win;
@@ -91,6 +94,7 @@ typedef struct s_program {
 	int			collect;
 	t_num		num;
 	t_enemy		enemy;
+	void		**anim;
 }				t_program;
 
 int		ft_check_map_format(char *map);
@@ -101,10 +105,13 @@ void	ft_map(t_program *p);
 int		ft_key(int key, void *param);
 void	ft_destroyer(t_program *p);
 int		mlx_close(t_program *p);
-int		ft_win(t_program *p);
+void	ft_win(t_program *p);
 void	ft_number_sprite(t_program *p);
 void	ft_count_move(t_program *p);
 void	ft_destroy_num(t_program *p);
 int		enemy_move(void *param);
+void	ft_ghost_sprite(t_program *p, int x, int y);
+int		ft_animation(t_program *p);
+void	ft_destroy_anim(t_program *p);
 
 #endif

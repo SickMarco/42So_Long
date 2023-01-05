@@ -1,6 +1,6 @@
 NAME = so_long
 
-SRC = main.c map_error.c game_utils.c put_map.c movement.c move_counter.c enemy.c
+SRC = main.c map_error.c game_utils.c put_map.c movement.c move_counter.c enemy.c animation.c
 
 OBJ = $(SRC:.c=.o)
 

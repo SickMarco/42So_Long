@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:39:13 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/04 23:42:58 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/05 16:04:20 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_sprite(t_program *p)
 {
-	static int	x = SIZE;
-	static int	y = SIZE;
+	static int	x = 50;
+	static int	y = 50;
 
 	p->sprite.wall = mlx_xpm_file_to_image(p->mlx, "./Textures/wall50.xpm",
 			&x, &y);
@@ -32,6 +32,7 @@ void	ft_sprite(t_program *p)
 	p->enemy.img = mlx_xpm_file_to_image(p->mlx, "./Textures/enemy.xpm",
 			&x, &y);
 	ft_number_sprite(p);
+	ft_ghost_sprite(p, x, y);
 }
 
 void	ft_put_map(t_program *p, char c)

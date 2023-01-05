@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:28:41 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/05 12:36:37 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/05 15:55:23 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	mlx_close(t_program *p)
 	mlx_clear_window(p->mlx, p->win.win);
 	mlx_destroy_window(p->mlx, p->win.win);
 	ft_destroyer(p);
+	free(p->anim);
 	while (p->matrix.mat[p->matrix.lines])
 	{
 		free(p->matrix.mat[p->matrix.lines]);
@@ -59,7 +60,7 @@ void	game_loop(t_program *game)
 {
 	mlx_hook(game->win.win, 17, 0, mlx_close, game);
 	mlx_key_hook(game->win.win, *ft_key, game);
-	mlx_loop_hook(game->mlx, *ft_win, game);
+	mlx_loop_hook(game->mlx, *ft_animation, game);
 	if (game->enemy.count > 0)
 	{
 		srand(time(NULL));

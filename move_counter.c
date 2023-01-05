@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 17:40:41 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/03 16:06:03 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/05 16:04:58 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,9 @@ void	ft_destroy_num(t_program *p)
 
 void	ft_number_sprite(t_program *p)
 {
-	int	x;
-	int	y;
+	static int	x = 7;
+	static int	y = 10;
 
-	x = 7;
-	y = 10;
 	p->num.zero = mlx_xpm_file_to_image(p->mlx, "./Textures/Num/0.xpm",
 			&x, &y);
 	p->num.one = mlx_xpm_file_to_image(p->mlx, "./Textures/Num/1.xpm",

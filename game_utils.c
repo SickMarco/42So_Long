@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 17:51:29 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/05 12:07:18 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/05 16:18:43 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ft_matrix(char *path, t_program *p)
 	get_matrix(path, p);
 }
 
-int	ft_win(t_program *p)
+void	ft_win(t_program *p)
 {
 	if (p->player.pos.x == p->exit.pos.x && p->player.pos.y == p->exit.pos.y
 		&& p->exit.win == 1)
@@ -67,7 +67,6 @@ int	ft_win(t_program *p)
 		ft_printf("YOU WIN!\n");
 		mlx_close(p);
 	}
-	return (0);
 }
 
 void	ft_destroyer(t_program *p)
@@ -80,4 +79,5 @@ void	ft_destroyer(t_program *p)
 	mlx_destroy_image(p->mlx, p->exit.open);
 	mlx_destroy_image(p->mlx, p->enemy.img);
 	ft_destroy_num(p);
+	ft_destroy_anim(p);
 }
