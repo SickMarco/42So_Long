@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:28:41 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/05 15:55:23 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/06 17:28:35 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,12 @@ int	mlx_close(t_program *p)
 
 void	game_loop(t_program *game)
 {
+	game->end = 0;
+	game->enemy.random = 0;
+	game->enemy.wait = 0;
 	mlx_hook(game->win.win, 17, 0, mlx_close, game);
 	mlx_key_hook(game->win.win, *ft_key, game);
 	mlx_loop_hook(game->mlx, *ft_animation, game);
-	if (game->enemy.count > 0)
-	{
-		srand(time(NULL));
-		mlx_loop_hook(game->mlx, *enemy_move, game);
-	}
 	mlx_loop(game->mlx);
 }
 

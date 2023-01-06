@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 17:51:29 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/05 16:18:43 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/06 17:08:54 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,25 +59,48 @@ void	ft_matrix(char *path, t_program *p)
 	get_matrix(path, p);
 }
 
-void	ft_win(t_program *p)
+void	ft_win(t_program *p, int count)
 {
-	if (p->player.pos.x == p->exit.pos.x && p->player.pos.y == p->exit.pos.y
-		&& p->exit.win == 1)
+	static int	flag = 0;
+
+	if (flag == 0)
 	{
-		ft_printf("YOU WIN!\n");
-		mlx_close(p);
+		if (count == p->collect && p->exit.win == 0)
+		{
+			p->exit.win = 1;
+			mlx_put_image_to_window(p->mlx, p->win.win, p->exit.open,
+				p->exit.pos.y * SIZE, p->exit.pos.x * SIZE);
+		}
+		if (p->player.pos.x == p->exit.pos.x && p->player.pos.y == p->exit.pos.y
+			&& p->exit.win == 1)
+		{
+			p->end = 1;
+			mlx_clear_window(p->mlx, p->win.win);
+			mlx_string_put(p->mlx, p->win.win, p->win.size.x * SIZE / 2 - 25,
+				p->win.size.y * SIZE / 2, 0xFFFF0000, "YOU WIN!");
+			ft_printf("Close game with ESC or from Title Bar\n");
+			flag = 1;
+		}
 	}
+	return ;
 }
 
-void	ft_destroyer(t_program *p)
+void	ft_lose(t_program *p)
 {
-	mlx_destroy_image(p->mlx, p->sprite.collect);
-	mlx_destroy_image(p->mlx, p->sprite.wall);
-	mlx_destroy_image(p->mlx, p->sprite.exit);
-	mlx_destroy_image(p->mlx, p->sprite.floor);
-	mlx_destroy_image(p->mlx, p->player.img);
-	mlx_destroy_image(p->mlx, p->exit.open);
-	mlx_destroy_image(p->mlx, p->enemy.img);
-	ft_destroy_num(p);
-	ft_destroy_anim(p);
+	static int	flag = 0;
+
+	if (flag == 0)
+	{
+		if (p->player.pos.x == p->enemy.pos.x
+			&& p->player.pos.y == p->enemy.pos.y)
+		{
+			p->end = 1;
+			mlx_clear_window(p->mlx, p->win.win);
+			mlx_string_put(p->mlx, p->win.win, p->win.size.x * SIZE / 2 - 25,
+				p->win.size.y * SIZE / 2, 0xFFFF0000, "YOU LOSE!");
+			ft_printf("Close game with ESC or from Title Bar\n");
+			flag = 1;
+		}
+	}
+	return ;
 }

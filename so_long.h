@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 16:09:32 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/05 16:19:12 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/06 17:26:09 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,9 @@ typedef struct s_enemy {
 	void		*img;
 	t_vector	pos;
 	int			count;
+	int			random;
+	int			wait;
 }				t_enemy;
-
-typedef struct s_ghost{
-}				t_ghost;
 
 typedef struct s_program {
 	void		*mlx;
@@ -95,6 +94,7 @@ typedef struct s_program {
 	t_num		num;
 	t_enemy		enemy;
 	void		**anim;
+	int			end;
 }				t_program;
 
 int		ft_check_map_format(char *map);
@@ -105,7 +105,7 @@ void	ft_map(t_program *p);
 int		ft_key(int key, void *param);
 void	ft_destroyer(t_program *p);
 int		mlx_close(t_program *p);
-void	ft_win(t_program *p);
+void	ft_win(t_program *p, int count);
 void	ft_number_sprite(t_program *p);
 void	ft_count_move(t_program *p);
 void	ft_destroy_num(t_program *p);
@@ -113,5 +113,6 @@ int		enemy_move(void *param);
 void	ft_ghost_sprite(t_program *p, int x, int y);
 int		ft_animation(t_program *p);
 void	ft_destroy_anim(t_program *p);
+void	ft_lose(t_program *p);
 
 #endif

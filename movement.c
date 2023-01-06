@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 18:10:28 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/05 16:18:20 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/06 17:10:07 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,25 +94,23 @@ int	ft_key(int key, void *param)
 	static int	count = 0;
 
 	p = (t_program *)param;
-	if (key == 100)
-		ft_r_mov(p, &count);
-	else if (key == 97)
-		ft_l_mov(p, &count);
-	else if (key == 119)
-		ft_up_mov(p, &count);
-	else if (key == 115)
-		ft_down_mov(p, &count);
-	else if (key == 65307)
+	if (key == 65307)
 		mlx_close(p);
-	if (count == p->collect)
+	if (p->end != 1)
 	{
-		p->exit.win = 1;
-		mlx_put_image_to_window(p->mlx, p->win.win, p->exit.open,
-			p->exit.pos.y * SIZE, p->exit.pos.x * SIZE);
+		if (key == 100)
+			ft_r_mov(p, &count);
+		else if (key == 97)
+			ft_l_mov(p, &count);
+		else if (key == 119)
+			ft_up_mov(p, &count);
+		else if (key == 115)
+			ft_down_mov(p, &count);
+		if (key == 100 || key == 97 || key == 119 || key == 115)
+			ft_count_move (p);
+		ft_printf ("Key pressed: %d\n", key);
 	}
-	ft_win(p);
-	if (key == 100 || key == 97 || key == 119 || key == 115)
-		ft_count_move (p);
-	ft_printf ("Key pressed: %d\n", key);
+	ft_win(p, count);
+	ft_lose(p);
 	return (0);
 }

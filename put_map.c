@@ -6,11 +6,24 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:39:13 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/05 16:04:20 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/06 16:49:54 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	ft_destroyer(t_program *p)
+{
+	mlx_destroy_image(p->mlx, p->sprite.collect);
+	mlx_destroy_image(p->mlx, p->sprite.wall);
+	mlx_destroy_image(p->mlx, p->sprite.exit);
+	mlx_destroy_image(p->mlx, p->sprite.floor);
+	mlx_destroy_image(p->mlx, p->player.img);
+	mlx_destroy_image(p->mlx, p->exit.open);
+	mlx_destroy_image(p->mlx, p->enemy.img);
+	ft_destroy_num(p);
+	ft_destroy_anim(p);
+}
 
 void	ft_sprite(t_program *p)
 {

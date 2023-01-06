@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:50:44 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/05 16:03:20 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/06 18:06:54 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_destroy_anim(t_program *p)
 
 void	ft_ghost_sprite(t_program *p, int x, int y)
 {
-	p->anim = ft_calloc(sizeof(void *), 12);
+	p->anim = ft_calloc(sizeof(void *), 13);
 	p->anim[0] = mlx_xpm_file_to_image(p->mlx, "./Textures/Ghost/0.xpm",
 			&x, &y);
 	p->anim[1] = mlx_xpm_file_to_image(p->mlx, "./Textures/Ghost/1.xpm",
@@ -57,12 +57,19 @@ int	ft_animation(t_program *p)
 {
 	static int	counter = 0;
 
-	if (counter == 11)
-		counter = 0;
-	mlx_put_image_to_window(p->mlx, p->win.win, p->anim[counter],
-		p->player.pos.y * SIZE,
-		p->player.pos.x * SIZE);
-	counter++;
-	usleep(30000);
+	if (p->end != 1)
+	{
+		if (counter == 11)
+			counter = 0;
+		mlx_put_image_to_window(p->mlx, p->win.win, p->anim[counter],
+			p->player.pos.y * SIZE,
+			p->player.pos.x * SIZE);
+		counter++;
+		usleep(30000);
+	}
+	if (p->enemy.count > 0)
+	{
+		enemy_move(p);
+	}
 	return (0);
 }
