@@ -28,7 +28,7 @@ gnl:
 $(NAME): $(OBJ)
 	@echo "\033[32mCompiling $(NAME) 🚀"
 	@gcc $(CFLAGS) $(OBJ) $(LIBFT) $(PRINTF) $(GNL) $(LINK) -o $(NAME)
-	@echo "Compiled ✅"
+	@echo "Compiled ✅\033[0;37m"
 
 clean:
 	@echo "\033[0;31mCleaning objects 🧹"
@@ -38,7 +38,7 @@ clean:
 	@make clean -s -C Lib/GetNextLine
 
 fclean: clean
-	@echo "\033[0;31mRemoving $(NAME) 🗑"
+	@echo "\033[0;31mRemoving $(NAME) 🗑\033[0;37m"
 	@rm -rf $(NAME)
 	@make fclean -s -C Lib/Libft
 	@make fclean -s -C Lib/Printf

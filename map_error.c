@@ -6,33 +6,11 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 16:48:13 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/05 12:29:29 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/06 19:15:31 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int	ft_check_map_format(char *map)
-{
-	int		i;
-	char	*ber;
-	int		fd;
-
-	ber = "ber\0";
-	i = 7;
-	while (map[i - 1] != '.' && map[i])
-		i++;
-	if (ft_strncmp(&map[i], &ber[0], 4) != 0)
-		return (1);
-	fd = open (map, O_RDONLY);
-	if (fd == -1)
-	{
-		close(fd);
-		return (1);
-	}
-	close (fd);
-	return (0);
-}
 
 int	ft_wall_controll(t_program *p, int x, int y, int flag)
 {

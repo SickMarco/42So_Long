@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 17:51:29 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/06 17:08:54 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/06 21:39:47 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,16 @@ void	get_matrix(char *path, t_program *p)
 	free(buff);
 }
 
-void	ft_matrix(char *path, t_program *p)
+int	ft_matrix(char *path, t_program *p)
 {
 	p->matrix.lines = 0;
 	p->matrix.fd = open(path, O_RDONLY);
+	if (p->matrix.fd == -1)
+	{
+		close(p->matrix.fd);
+		free(path);
+		return (1);
+	}
 	p->matrix.line = get_next_line(p->matrix.fd);
 	while (p->matrix.line != NULL)
 	{
@@ -57,6 +63,7 @@ void	ft_matrix(char *path, t_program *p)
 	free(p->matrix.line);
 	close(p->matrix.fd);
 	get_matrix(path, p);
+	return (0);
 }
 
 void	ft_win(t_program *p, int count)
@@ -78,7 +85,7 @@ void	ft_win(t_program *p, int count)
 			mlx_clear_window(p->mlx, p->win.win);
 			mlx_string_put(p->mlx, p->win.win, p->win.size.x * SIZE / 2 - 25,
 				p->win.size.y * SIZE / 2, 0xFFFF0000, "YOU WIN!");
-			ft_printf("Close game with ESC or from Title Bar\n");
+			ft_printf("Close game with ESC or ✖\n");
 			flag = 1;
 		}
 	}
@@ -94,12 +101,13 @@ void	ft_lose(t_program *p)
 		if (p->player.pos.x == p->enemy.pos.x
 			&& p->player.pos.y == p->enemy.pos.y)
 		{
+			mlx_put_image_to_window(p->mlx, p->win.win, p->enemy.lose,
+				p->enemy.pos.y * SIZE, p->enemy.pos.x * SIZE);
 			p->end = 1;
-			mlx_clear_window(p->mlx, p->win.win);
 			mlx_string_put(p->mlx, p->win.win, p->win.size.x * SIZE / 2 - 25,
 				p->win.size.y * SIZE / 2, 0xFFFF0000, "YOU LOSE!");
-			ft_printf("Close game with ESC or from Title Bar\n");
-			flag = 1;
+			ft_printf("Close game with ESC or ✖\n");
+			flag++;
 		}
 	}
 	return ;

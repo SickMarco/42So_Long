@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:39:13 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/06 16:49:54 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/06 21:33:41 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ft_destroyer(t_program *p)
 	mlx_destroy_image(p->mlx, p->player.img);
 	mlx_destroy_image(p->mlx, p->exit.open);
 	mlx_destroy_image(p->mlx, p->enemy.img);
+	mlx_destroy_image(p->mlx, p->enemy.lose);
 	ft_destroy_num(p);
 	ft_destroy_anim(p);
 }
@@ -43,6 +44,8 @@ void	ft_sprite(t_program *p)
 	p->exit.open = mlx_xpm_file_to_image(p->mlx, "./Textures/open_d.xpm",
 			&x, &y);
 	p->enemy.img = mlx_xpm_file_to_image(p->mlx, "./Textures/enemy.xpm",
+			&x, &y);
+	p->enemy.lose = mlx_xpm_file_to_image(p->mlx, "./Textures/lose.xpm",
 			&x, &y);
 	ft_number_sprite(p);
 	ft_ghost_sprite(p, x, y);
