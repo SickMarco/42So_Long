@@ -6,7 +6,7 @@
 /*   By: mbozzi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 18:10:28 by mbozzi            #+#    #+#             */
-/*   Updated: 2023/01/06 20:15:43 by mbozzi           ###   ########.fr       */
+/*   Updated: 2023/01/07 15:20:52 by mbozzi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ int	ft_key(int key, void *param)
 		ft_printf ("Key pressed: %d\n", key);
 	}
 	ft_win(p, count);
-	ft_lose(p);
+	if (p->enemy.count > 0)
+		ft_lose(p);
 	return (0);
 }
